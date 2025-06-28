@@ -27,7 +27,7 @@ return !loading ? (
     <div className="w-full block">
       <Header/>
         <main>
-         Todo : <Outlet/>
+       Todo    {/*: <Outlet/> */}
         </main> 
       <Footer/>
     </div>
