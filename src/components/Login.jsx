@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
 import {login as authLogin}  from "../store/authSlice"
 import {Button, Input, Logo} from "./index"
@@ -10,7 +10,7 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {register, handleSubmit} = useForm();
-    cosnt [error, setError] = useState("")
+    const [error, setError] = useState("")
 
 
     const login = async (data) => {
@@ -54,8 +54,19 @@ const Login = () => {
                             type="email"
                             {...register("email", {
                                 required:true,
+                                validate:{
+                                    matchPatern: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.text(value) || "Email address must be a valid address",
+                                }
                             })}
                         />
+                        <Input
+                        label="Password:  "
+                        placeholder="Enter your Password"
+                        type="password"
+                        {...register("password",{
+                            required:true
+                        })} />
+                        <Button type='submit' className='w-full'>Sign In</Button>
                     </div>
                 </form>
             </div>
