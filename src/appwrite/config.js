@@ -80,7 +80,7 @@ export class Service {
       );
     } catch (error) {
       console.log("appwrite service :: getPosts :: " + error);
-      return false;
+      return false; 
     }
   }
 
