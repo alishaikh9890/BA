@@ -1,9 +1,9 @@
-import { Editor } from '@tinymce/tinymce-react'
 import React from 'react'
+import { Editor } from '@tinymce/tinymce-react'
 import { Controller } from 'react-hook-form'
 
 
-function RTE({name, control, label, defaultValue, ...rest}){
+function RTE({name, control, label, defaultValue=""}){
 
 
 
@@ -21,7 +21,7 @@ function RTE({name, control, label, defaultValue, ...rest}){
             initialValue={defaultValue}
             init={{
               height: 500,
-              menubar: false,
+              menubar: true,
               plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
                 'searchreplace visualblocks code fullscreen',

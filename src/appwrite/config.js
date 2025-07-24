@@ -4,7 +4,7 @@ import {
   appwriteDatabaseId,
   appwriteCollectionId,
   appwriteBucketId,
-} from "../conf.js";
+} from "../conf/conf.js";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Service {
