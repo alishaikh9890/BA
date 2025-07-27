@@ -1,11 +1,13 @@
-import {
+import conf from "../conf/conf.js";
+import { Client, ID, Databases, Storage, Query } from "appwrite";
+
+const {
   appwriteUrl,
   appwriteProjectId,
   appwriteDatabaseId,
   appwriteCollectionId,
-  appwriteBucketId,
-} from "../conf/conf.js";
-import { Client, ID, Databases, Storage, Query } from "appwrite";
+  appwriteBucketId
+} = conf;
 
 export class Service {
   client = new Client();
@@ -20,10 +22,11 @@ export class Service {
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
-      return this.databases.createDocument(
+      return await this.databases.createDocument(
         appwriteDatabaseId,
         appwriteCollectionId,
-        slug,
+        // slug,
+        ID.unique(),
         { title, content, featuredImage, status, userId }
       );
     } catch (error) {
@@ -104,8 +107,8 @@ export class Service {
     }
   }
 
-  getfilePreview(fileId){
-    return this.bucket.getFilePreview(appwriteBucketId, fileId)
+  getFilePreview(fileId){
+    return this.bucket.getFileView(appwriteBucketId, fileId)
   }
 
 }

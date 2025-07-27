@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import appwriteServece from '../appwrite/config'
-import { PostCart } from '../components'
+import { Container, PostCart } from '../components'
 
 const Home = () => {
     const [posts, setPosts] = useState([])
@@ -31,7 +31,7 @@ return posts.length === 0 ? (
             <div className='flex flex-wrap'>
                {posts.map((post)=>(
                 <div key={post.$id} className='p-2 w-1/4'>
-                    <PostCart post={post}/>
+                    <PostCart {...post}/>
                 </div>
                ))}
             </div>

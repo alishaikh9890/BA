@@ -11,7 +11,7 @@ import SignUp from "./SignUp";
 import Login from "./Login"
 import PostCart from "./PostCart"
 import PostForm from "./post-form/PostForm"
-import AuthLayout from "./AuthLayout"
+import { Protector } from "./AuthLayout"
 
 export {
     Header,
@@ -27,6 +27,6 @@ export {
     Login,
     PostCart,
     PostForm,
-    AuthLayout
+    Protector
 
 }

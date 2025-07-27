@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.jsx'
-import { AuthLayout } from './components/index.js'
+import {Protector } from './components/index.js'
 import AllPosts from './pages/AllPosts.jsx'
 import Login from './pages/Login.jsx'
 import SignUp from './pages/SignUp.jsx'
@@ -27,44 +27,44 @@ const router = createBrowserRouter([
       {
         path:'/login',
         element:(
-          <AuthLayout authentication={false}>
+          <Protector authentication={false}>
             <Login/>
-          </AuthLayout>
+          </Protector>
         )
       },
       {
             path: "/signup",
             element: (
-                <AuthLayout authentication={false}>
+                <Protector authentication={false}>
                     <SignUp />
-                </AuthLayout>
+                </Protector>
             ),
         },
         {
             path: "/all-posts",
             element: (
-                <AuthLayout authentication>
+                <Protector authentication>
                     {" "}
                     <AllPosts />
-                </AuthLayout>
+                </Protector>
             ),
         },
         {
-            path: "/add-post",
+            path: "/add-posts",
             element: (
-                <AuthLayout authentication>
+                <Protector authentication>
                     {" "}
                     <AddPost />
-                </AuthLayout>
+                </Protector>
             ),
         },
         {
             path: "/edit-post/:slug",
             element: (
-                <AuthLayout authentication>
+                <Protector authentication>
                     {" "}
                     <EditPost />
-                </AuthLayout>
+                </Protector>
             ),
         },
         {
@@ -80,7 +80,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
     <RouterProvider router={router}>
-    <App />
+
     </RouterProvider>
     </Provider>
   </StrictMode>,

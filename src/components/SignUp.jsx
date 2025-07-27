@@ -6,6 +6,7 @@ import Button from './Button'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
+import Logo from './Logo'
 
 
 const SignUp = () => {
@@ -70,7 +71,8 @@ const SignUp = () => {
                             {...register("email", {
                                 required:true,
                                 validate:{
-                                    matchPatern: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.text(value) || "Email address must be a valid address",
+                                      matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                "Email address must be a valid address",
                                 }
                             })}
                         />
