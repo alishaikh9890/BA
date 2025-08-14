@@ -1,18 +1,19 @@
-import { StrictMode } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home.jsx'
+const Home = lazy(()=> import('./pages/Home.jsx')) 
 import {Protector } from './components/index.js'
-import AllPosts from './pages/AllPosts.jsx'
-import Login from './pages/Login.jsx'
-import SignUp from './pages/SignUp.jsx'
-import AddPost from './pages/AddPost.jsx'
-import EditPost from './pages/EditPost.jsx'
-import Post from './pages/Post.jsx'
+import Loading from './components/Loading.jsx'
+const AllPosts = lazy(()=> import('./pages/AllPosts.jsx'))
+const Login = lazy(()=> import('./pages/Login.jsx'))
+const SignUp = lazy(()=> import('./pages/SignUp.jsx'))
+const AddPost = lazy(()=> import('./pages/AddPost.jsx'))
+const EditPost = lazy(()=> import('./pages/EditPost.jsx'))
+const Post = lazy(()=> import('./pages/Post.jsx'))
 
 
 const router = createBrowserRouter([
@@ -22,7 +23,10 @@ const router = createBrowserRouter([
     children:[
       {
         path: '/',
-        element:<Home/>
+        element:(
+          <Suspense fallback={<Loading/>}>
+            <Home/>
+          </Suspense>)
       },
       {
         path:'/login',
@@ -43,10 +47,12 @@ const router = createBrowserRouter([
         {
             path: "/all-posts",
             element: (
+              <Suspense fallback={<Loading/>}>
                 <Protector authentication>
                     {" "}
-                    <AllPosts />
-                </Protector>
+                            <AllPosts />
+                            </Protector>
+                            </Suspense>
             ),
         },
         {
@@ -69,7 +75,10 @@ const router = createBrowserRouter([
         },
         {
             path: "/post/:slug",
-            element: <Post />,
+            element: (
+          <Suspense fallback={<Loading/>}>
+            <Post/>
+          </Suspense>),
         },
     ]
   }

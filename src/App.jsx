@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Suspense } from "react"
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth"
 import {login, logout} from "./store/authSlice"
@@ -27,7 +27,9 @@ return !loading ? (
     <div className="w-full block">
       <Header/>
         <main>
-       Todo  
+      <Suspense>
+        
+      </Suspense> 
          <Outlet/>  
         </main> 
       <Footer/>
